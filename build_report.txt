@@ -1,0 +1,749 @@
+Buildozer is running as root!
+This is not recommended, and may lead to problems later.
+Are you sure you want to continue [y/n]? # Ensure build layout
+# Check configuration tokens
+# Preparing build
+# Check requirements for android
+# Search for Git (git)
+#  -> found at /usr/bin/git
+# Search for Cython (cython)
+#  -> found at /usr/local/bin/cython
+# Search for Java compiler (javac)
+#  -> found at /usr/bin/javac
+# Search for Java keytool (keytool)
+#  -> found at /usr/bin/keytool
+# Install platform
+# Run 'git config --get remote.origin.url' ...
+# Cwd /content/.buildozer/android/platform/python-for-android
+https://github.com/kivy/python-for-android.git
+# Run 'git branch -vv' ...
+# Cwd /content/.buildozer/android/platform/python-for-android
+* master 58d21141 [origin/master] Merge pull request #3321 from kivy/release-2026.05.09
+# Run '/usr/bin/python3 -m pip install -q --user appdirs colorama>=0.3.3 jinja2 sh>=2, <3.0; sys_platform!="win32" meson ninja build toml packaging setuptools wheel~=0.43.0' ...
+# Cwd None
+# Apache ANT found at /root/.buildozer/android/platform/apache-ant-1.9.4
+# Android SDK found at /root/.buildozer/android/platform/android-sdk
+# Recommended android's NDK version by p4a is: 28c
+# Android NDK found at /root/.buildozer/android/platform/android-ndk-r28c
+# Run '/usr/bin/python3 -m pythonforandroid.toolchain aab -h --color=always --storage-dir=/content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a --ndk-api=24 --ignore-setup-py --debug' ...
+# Cwd /content/.buildozer/android/platform/python-for-android
+# Check application requirements
+# Compile platform
+# Run '/usr/bin/python3 -m pythonforandroid.toolchain create --dist_name=helloapp --bootstrap=sdl2 --requirements=python3,kivy --arch=arm64-v8a --arch=armeabi-v7a --copy-libs --color=always --storage-dir=/content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a --ndk-api=24 --ignore-setup-py --debug' ...
+# Cwd /content/.buildozer/android/platform/python-for-android
+[WARNING]: prerequisites.py is experimental and does not support all prerequisites yet.
+[WARNING]: Please report any issues to the python-for-android issue tracker.
+[WARNING]: prerequisites.py is experimental and does not support all prerequisites yet.
+[WARNING]: Please report any issues to the python-for-android issue tracker.
+[1m[INFO][0m:    Will compile for the following archs: armeabi-v7a, arm64-v8a
+[1m[INFO][0m:    Found Android API target in $ANDROIDAPI: 33
+[1m[INFO][0m:    Available Android APIs are (33)
+[1m[INFO][0m:    Requested API target 33 is available, continuing.
+[1m[INFO][0m:    Found NDK dir in $ANDROIDNDK: /root/.buildozer/android/platform/android-ndk-r28c
+[1m[INFO][0m:    Found NDK version 28c
+[1m[31m[WARNING][39m[0m: Maximum recommended NDK version is 28c, but newer versions may work.
+[1m[31m[WARNING][39m[0m: Newer NDKs may not be fully supported by p4a.
+[1m[INFO][0m:    Getting NDK API version (i.e. minimum supported API) from user argument
+[1m[INFO][0m:    ccache is missing, the build will not be optimized in the future.
+[1m[90m[DEBUG][39m[0m:   All possible dists: []
+[1m[90m[DEBUG][39m[0m:   Dist matching name and arch: []
+[1m[90m[DEBUG][39m[0m:   Dist matching ndk_api and recipe: []
+[1m[INFO][0m:    No existing dists meet the given requirements!
+[1m[90m[DEBUG][39m[0m:   Remove directory and subdirectory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/dists/helloapp
+[1m[INFO][0m:    [1m[94mNo dist exists that meets your requirements, so one will be built.[0m
+[1m[INFO][0m:    Found a single valid recipe set: ['hostpython3', 'libffi', 'openssl', 'sdl2_image', 'sdl2_mixer', 'sdl2_ttf', 'six', 'sqlite3', 'python3', 'sdl2', 'pyjnius', 'setuptools', 'android', 'kivy']
+[1m[INFO][0m:    The selected bootstrap is sdl2
+[1m[INFO][0m:    [1m[32m# Creating dist with sdl2 bootstrap[0m[39m
+[1m[INFO][0m:    [1m[94mDist will have name helloapp and requirements (python3, kivy)[0m
+[1m[INFO][0m:    Dist contains the following requirements as recipes: ['hostpython3', 'libffi', 'openssl', 'sdl2_image', 'sdl2_mixer', 'sdl2_ttf', 'sqlite3', 'python3', 'sdl2', 'pyjnius', 'setuptools', 'android', 'kivy']
+[1m[INFO][0m:    Dist will also contain modules (urllib3, chardet, certifi, filetype, six, idna, requests) installed from pip
+[1m[INFO][0m:    Dist will be build in mode debug
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2[39m
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/dists/helloapp
+[1m[INFO][0m:    [1m[94mRecipe build order is ['hostpython3', 'libffi', 'openssl', 'sdl2_image', 'sdl2_mixer', 'sdl2_ttf', 'sqlite3', 'python3', 'sdl2', 'pyjnius', 'setuptools', 'android', 'kivy'][0m
+[1m[INFO][0m:    [1m[94mThe requirements (certifi, chardet, filetype, idna, requests, six, urllib3) were not found as recipes, they will be installed with pip.[0m
+[1m[INFO][0m:    [1m[32m# Downloading recipes [0m[39m
+[1m[INFO][0m:    [1m[32mDownloading hostpython3[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/hostpython3[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/python/cpython/archive/refs/tags/v3.14.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	v3.14.2.tar.gz
+[1m[INFO][0m:    hostpython3 download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading libffi[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/libffi[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libffi/libffi/archive/v3.4.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	v3.4.2.tar.gz
+[1m[INFO][0m:    libffi download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading openssl[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/openssl[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://www.openssl.org/source/openssl-3.3.1.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	openssl-3.3.1.tar.gz
+[1m[INFO][0m:    openssl download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading sdl2_image[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/sdl2_image[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.2/SDL2_image-2.8.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2_image-2.8.2.tar.gz
+[1m[INFO][0m:    sdl2_image download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading sdl2_mixer[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/sdl2_mixer[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2_mixer-2.6.3.tar.gz
+[1m[INFO][0m:    sdl2_mixer download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading sdl2_ttf[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/sdl2_ttf[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.22.0/SDL2_ttf-2.22.0.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2_ttf-2.22.0.tar.gz
+[1m[INFO][0m:    sdl2_ttf download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading sqlite3[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/sqlite3[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/sqlite/sqlite/archive/refs/tags/version-3.50.4.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	version-3.50.4.tar.gz
+[1m[INFO][0m:    sqlite3 download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading python3[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/python3[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/python/cpython/archive/refs/tags/v3.14.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	v3.14.2.tar.gz
+[1m[INFO][0m:    python3 download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading sdl2[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/sdl2[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL/releases/download/release-2.30.11/SDL2-2.30.11.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2-2.30.11.tar.gz
+[1m[INFO][0m:    sdl2 download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading pyjnius[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/pyjnius[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/kivy/pyjnius/archive/1.7.0.zip[0m
+[1m[90m[DEBUG][39m[0m:   	1.7.0.zip
+[1m[INFO][0m:    pyjnius download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mDownloading setuptools[0m[39m
+[1m[INFO][0m:    Skipping setuptools download as no URL is set
+[1m[INFO][0m:    [1m[32mDownloading android[0m[39m
+[1m[INFO][0m:    Skipping android download as no URL is set
+[1m[INFO][0m:    [1m[32mDownloading kivy[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/packages/kivy[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/kivy/kivy/archive/2.3.1.zip[0m
+[1m[90m[DEBUG][39m[0m:   	2.3.1.zip
+[1m[INFO][0m:    kivy download already cached, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32m# Building all recipes for arch armeabi-v7a[0m[39m
+[1m[INFO][0m:    [1m[32m# Unpacking recipes[0m[39m
+[1m[INFO][0m:    [1m[32mUnpacking hostpython3 for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/python/cpython/archive/refs/tags/v3.14.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	v3.14.2.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/hostpython3/desktop[39m
+[1m[INFO][0m:    hostpython3 is already unpacked, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking libffi for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libffi/libffi/archive/v3.4.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	v3.4.2.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24[39m
+[1m[90m[DEBUG][39m[0m:   Moving libffi-3.4.2 to /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24/libffi
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking openssl for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://www.openssl.org/source/openssl-3.3.1.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	openssl-3.3.1.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/armeabi-v7a__ndk_target_24[39m
+[1m[90m[DEBUG][39m[0m:   Moving openssl-3.3.1 to /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/openssl/armeabi-v7a__ndk_target_24/openssl3
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mUnpacking sdl2_image for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL_image/releases/download/release-2.8.2/SDL2_image-2.8.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2_image-2.8.2.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2/jni[39m
+[1m[INFO][0m:    sdl2_image is already unpacked, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mUnpacking sdl2_mixer for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2_mixer-2.6.3.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2/jni[39m
+[1m[INFO][0m:    sdl2_mixer is already unpacked, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mUnpacking sdl2_ttf for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.22.0/SDL2_ttf-2.22.0.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2_ttf-2.22.0.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2/jni[39m
+[1m[INFO][0m:    sdl2_ttf is already unpacked, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/sqlite3/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking sqlite3 for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/sqlite/sqlite/archive/refs/tags/version-3.50.4.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	version-3.50.4.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/sqlite3/armeabi-v7a__ndk_target_24[39m
+[1m[90m[DEBUG][39m[0m:   Moving sqlite-version-3.50.4 to /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/sqlite3/armeabi-v7a__ndk_target_24/sqlite3
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking python3 for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/python/cpython/archive/refs/tags/v3.14.2.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	v3.14.2.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24[39m
+[1m[90m[DEBUG][39m[0m:   Moving cpython-3.14.2 to /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24/python3
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mUnpacking sdl2 for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/libsdl-org/SDL/releases/download/release-2.30.11/SDL2-2.30.11.tar.gz[0m
+[1m[90m[DEBUG][39m[0m:   	SDL2-2.30.11.tar.gz
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/bootstrap_builds/sdl2/jni[39m
+[1m[INFO][0m:    sdl2 is already unpacked, skipping
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius-sdl2/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking pyjnius for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/kivy/pyjnius/archive/1.7.0.zip[0m
+[1m[90m[DEBUG][39m[0m:   	1.7.0.zip
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius-sdl2/armeabi-v7a__ndk_target_24[39m
+[1m[90m[DEBUG][39m[0m:   Moving pyjnius-1.7.0 to /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius-sdl2/armeabi-v7a__ndk_target_24/pyjnius
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/setuptools/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking setuptools for armeabi-v7a[0m[39m
+[1m[INFO][0m:    Skipping setuptools unpack as no URL is set
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/android-sdl2/armeabi-v7a__ndk_target_24
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running cp -a /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/android/src /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/android-sdl2/armeabi-v7a__ndk_target_24/android[0m
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24
+[1m[INFO][0m:    [1m[32mUnpacking kivy for armeabi-v7a[0m[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running basename https://github.com/kivy/kivy/archive/2.3.1.zip[0m
+[1m[90m[DEBUG][39m[0m:   	2.3.1.zip
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24[39m
+[1m[90m[DEBUG][39m[0m:   Moving kivy-2.3.1 to /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24/kivy
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32m# Prebuilding recipes[0m[39m
+[1m[INFO][0m:    python3 has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding hostpython3 for armeabi-v7a[0m[39m
+[1m[INFO][0m:    hostpython3 has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mApplying patches for hostpython3[armeabi-v7a][0m[39m
+[1m[INFO][0m:    [1m[32mhostpython3 already patched, skipping[0m[39m
+[1m[INFO][0m:    [1m[32mPrebuilding libffi for armeabi-v7a[0m[39m
+[1m[INFO][0m:    libffi has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mApplying patches for libffi[armeabi-v7a][0m[39m
+[1m[INFO][0m:    Applying patch remove-version-info.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24/libffi -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/libffi/remove-version-info.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file Makefile.am
+[1m[90m[DEBUG][39m[0m:   	Hunk #1 succeeded at 138 with fuzz 2 (offset -18 lines).
+[1m[INFO][0m:    [1m[32mPrebuilding openssl for armeabi-v7a[0m[39m
+[1m[INFO][0m:    openssl has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding sdl2_image for armeabi-v7a[0m[39m
+[1m[INFO][0m:    sdl2_image has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mApplying patches for sdl2_image[armeabi-v7a][0m[39m
+[1m[INFO][0m:    [1m[32msdl2_image already patched, skipping[0m[39m
+[1m[INFO][0m:    [1m[32mPrebuilding sdl2_mixer for armeabi-v7a[0m[39m
+[1m[INFO][0m:    sdl2_mixer has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding sdl2_ttf for armeabi-v7a[0m[39m
+[1m[INFO][0m:    sdl2_ttf has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding sqlite3 for armeabi-v7a[0m[39m
+[1m[INFO][0m:    sqlite3 has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding python3 for armeabi-v7a[0m[39m
+[1m[INFO][0m:    python3 has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mApplying patches for python3[armeabi-v7a][0m[39m
+[1m[INFO][0m:    Applying patch patches/cpython-311-ctypes-find-library.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24/python3 -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/python3/patches/cpython-311-ctypes-find-library.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file Lib/ctypes/util.py
+[1m[INFO][0m:    Applying patch patches/reproducible-buildinfo.diff
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24/python3 -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/python3/patches/reproducible-buildinfo.diff[0m
+[1m[90m[DEBUG][39m[0m:   	patching file Makefile.pre.in
+[1m[90m[DEBUG][39m[0m:   	Hunk #1 succeeded at 1912 with fuzz 1 (offset 1127 lines).
+[1m[INFO][0m:    Applying patch patches/pyconfig_detection.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24/python3 -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/python3/patches/pyconfig_detection.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file Lib/site.py
+[1m[90m[DEBUG][39m[0m:   	Hunk #1 succeeded at 629 with fuzz 2 (offset 142 lines).
+[1m[INFO][0m:    Applying patch patches/3.14_fix_remote_debug.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24/python3 -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/python3/patches/3.14_fix_remote_debug.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file Modules/_remote_debugging_module.c
+[1m[90m[DEBUG][39m[0m:   	patching file Python/remote_debug.h
+[1m[INFO][0m:    Applying patch patches/3.14_armv7l_fix.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/python3/armeabi-v7a__ndk_target_24/python3 -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/python3/patches/3.14_armv7l_fix.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file Lib/sysconfig/__init__.py
+[1m[INFO][0m:    [1m[32mPrebuilding sdl2 for armeabi-v7a[0m[39m
+[1m[INFO][0m:    sdl2 has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding pyjnius for armeabi-v7a[0m[39m
+[1m[INFO][0m:    pyjnius has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mApplying patches for pyjnius[armeabi-v7a][0m[39m
+[1m[INFO][0m:    Applying patch use_cython.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/pyjnius-sdl2/armeabi-v7a__ndk_target_24/pyjnius -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/pyjnius/use_cython.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file setup.py
+[1m[90m[DEBUG][39m[0m:   	Hunk #1 succeeded at 56 (offset -3 lines).
+[1m[INFO][0m:    [1m[32mPrebuilding setuptools for armeabi-v7a[0m[39m
+[1m[INFO][0m:    setuptools has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mPrebuilding android for armeabi-v7a[0m[39m
+[1m[INFO][0m:    android has no prebuild_armeabi_v7a, skipping
+[1m[90m[DEBUG][39m[0m:   Create directory /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/libs_collections/helloapp/armeabi-v7a
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/android-sdl2/armeabi-v7a__ndk_target_24/android[39m
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [1m[32mPrebuilding kivy for armeabi-v7a[0m[39m
+[1m[INFO][0m:    kivy has no prebuild_armeabi_v7a, skipping
+[1m[INFO][0m:    [1m[32mApplying patches for kivy[armeabi-v7a][0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24/kivy/kivy[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running python3 -c import _version; print(_version.__version__)[0m
+[1m[90m[DEBUG][39m[0m:   	2.3.1
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24/kivy/kivy[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running python3 -c import _version; print(_version.__version__)[0m
+[1m[90m[DEBUG][39m[0m:   	2.3.1
+[1m[INFO][0m:    [36m<- directory context /content/.buildozer/android/platform/python-for-android[39m
+[1m[INFO][0m:    Applying patch use_cython.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24/kivy -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/kivy/use_cython.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file setup.py
+[1m[90m[DEBUG][39m[0m:   	Hunk #1 succeeded at 248 (offset -1 lines).
+[1m[INFO][0m:    Applying patch no-ast-str.patch
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running patch -t -d /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/kivy-sdl2/armeabi-v7a__ndk_target_24/kivy -p1 -i /content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/kivy/no-ast-str.patch[0m
+[1m[90m[DEBUG][39m[0m:   	patching file kivy/lang/parser.py
+[1m[INFO][0m:    [1m[32m# Building recipes[0m[39m
+[1m[INFO][0m:    [1m[32mBuilding hostpython3 for armeabi-v7a[0m[39m
+[1m[INFO][0m:    hostpython3 said it is already built, skipping
+[1m[INFO][0m:    [1m[32mBuilding libffi for armeabi-v7a[0m[39m
+[1m[INFO][0m:    [36m-> directory context /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24/libffi[39m
+stty: 'standard input': Inappropriate ioctl for device
+[1m[90m[DEBUG][39m[0m:   [90m->[0m running autogen.sh[0m
+[1m[90m[DEBUG][39m[0m:   	autoreconf: export WARNINGS=
+[1m[90m[DEBUG][39m[0m:   	autoreconf: Entering directory '.'
+[1m[90m[DEBUG][39m[0m:   	autoreconf: configure.ac: not using Gettext
+[1m[90m[DEBUG][39m[0m:   	autoreconf: running: aclocal -I m4
+[1m[90m[DEBUG][39m[0m:   	autoreconf: configure.ac: tracing
+[1m[90m[DEBUG][39m[0m:   	autoreconf: configure.ac: not using Libtool
+[1m[90m[DEBUG][39m[0m:   	autoreconf: configure.ac: not using Intltool
+[1m[90m[DEBUG][39m[0m:   	autoreconf: configure.ac: not using Gtkdoc
+[1m[90m[DEBUG][39m[0m:   	autoreconf: running: /usr/bin/autoconf
+[1m[90m[DEBUG][39m[0m:   	configure.ac:8: warning: The macro `AC_CANONICAL_SYSTEM' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:8: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2081: AC_CANONICAL_SYSTEM is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:8: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:74: warning: The macro `AC_TRY_COMPILE' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:74: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:3: AC_FUNC_MMAP_BLACKLIST is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:74: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:91: warning: The macro `AC_HEADER_STDC' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:91: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/headers.m4:704: AC_HEADER_STDC is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:91: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:118: warning: The macro `AC_TRY_COMPILE' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:118: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	m4/asmcfi.m4:1: GCC_AS_CFI_PSEUDO_OP is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:118: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:122: warning: The macro `AC_TRY_LINK' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:122: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:122: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:138: warning: The macro `AC_TRY_COMPILE' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:138: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:138: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:185: warning: The macro `AC_TRY_COMPILE' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:185: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:185: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:215: warning: _LT_CMD_GLOBAL_SYMBOLS is m4_require'd but not m4_defun'd
+[1m[90m[DEBUG][39m[0m:   	aclocal.m4:778: LT_SYS_SYMBOL_USCORE is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:215: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:310: warning: The macro `AC_HELP_STRING' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:310: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:310: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: warning: The macro `AC_HELP_STRING' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: warning: AC_PROG_LD is m4_require'd but not m4_defun'd
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:251: LIBFFI_CHECK_LINKER_FEATURES is expanded from...
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: warning: The macro `AC_TRY_RUN' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2997: AC_TRY_RUN is expanded from...
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:251: LIBFFI_CHECK_LINKER_FEATURES is expanded from...
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: warning: The macro `AC_TRY_LINK' is obsolete.
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: You should run autoupdate.
+[1m[90m[DEBUG][39m[0m:   	./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+[1m[90m[DEBUG][39m[0m:   	acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+[1m[90m[DEBUG][39m[0m:   	configure.ac:418: the top level
+[1m[90m[DEBUG][39m[0m:   	configure.ac:41: error: possibly undefined macro: AC_PROG_LIBTOOL
+[1m[90m[DEBUG][39m[0m:   	      If this token and others are legitimate, please use m4_pattern_allow.
+[1m[90m[DEBUG][39m[0m:   	      See the Autoconf documentation.
+[1m[90m[DEBUG][39m[0m:   	configure:8578: error: possibly undefined macro: AC_PROG_LD
+[1m[90m[DEBUG][39m[0m:   	autoreconf: error: /usr/bin/autoconf failed with exit status: 1
+Exception in thread background thread for pid 54545:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.12/threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 1709, in wrap
+    fn(*rgs, **kwargs)
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 2720, in background_thread
+    handle_exit_code(exit_code)
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 2411, in fn
+    return self.command.handle_command_exit_code(exit_code)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 820, in handle_command_exit_code
+    raise exc
+sh.ErrorReturnCode_1: 
+
+  RAN: /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24/libffi/autogen.sh
+
+  STDOUT:
+autoreconf: export WARNINGS=
+autoreconf: Entering directory '.'
+autoreconf: configure.ac: not using Gettext
+autoreconf: running: aclocal -I m4
+autoreconf: configure.ac: tracing
+autoreconf: configure.ac: not using Libtool
+autoreconf: configure.ac: not using Intltool
+autoreconf: configure.ac: not using Gtkdoc
+autoreconf: running: /usr/bin/autoconf
+configure.ac:8: warning: The macro `AC_CANONICAL_SYSTEM' is obsolete.
+configure.ac:8: You should run autoupdate.
+./lib/autoconf/general.m4:2081: AC_CANONICAL_SYSTEM is expanded from...
+configure.ac:8: the top level
+configure.ac:74: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:74: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+acinclude.m4:3: AC_FUNC_MMAP_BLACKLIST is expanded from...
+configure.ac:74: the top level
+configure.ac:91: warning: The macro `AC_HEADER_STDC' is obsolete.
+configure.ac:91: You should run autoupdate.
+./lib/autoconf/headers.m4:704: AC_HEADER_STDC is expanded from...
+configure.ac:91: the top level
+configure.ac:118: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:118: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+m4/asmcfi.m4:1: GCC_AS_CFI_PSEUDO_OP is expanded from...
+configure.ac:118: the top level
+configure.ac:122: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:122: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+configure.ac:122: the top level
+configure.ac:138: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:138: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+configure.ac:138: the top level
+configure.ac:185: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:185: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+configure.ac:185: the top level
+configure.ac:215: warning: _LT_CMD_GLOBAL_SYMBOLS is m4_require'd but not m4_defun'd
+aclocal.m4:778: LT_SYS_SYMBOL_USCORE is expanded from...
+configure.ac:215: the top level
+configure.ac:310: warning: The macro `AC_HELP_STRING' is obsolete.
+configure.ac:310: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+configure.ac:310: the top level
+configure.ac:418: warning: The macro `AC_HELP_STRING' is obsolete.
+configure.ac:418: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:418: warning: AC_PROG_LD is m4_require'd but not m4_defun'd
+acinclude.m4:251: LIBFFI_CHECK_LINKER_FEATURES is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:418: warning: The macro `AC_TRY_RUN' is obsolete.
+configure.ac:418: You should run autoupdate.
+./lib/autoconf/general.m4:2997: AC_TRY_RUN is expanded from...
+acinclude.m4:251: LIBFFI_CHECK_LINKER_FEATURES is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:418: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:418: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:41: error: possibly undefined macro: AC_PROG_LIBTOOL
+      If this token and others are legitimate, please use m4_pattern_allow.
+      See the Autoconf documentation.
+configure:8578: error: possibly undefined macro: AC_PROG_LD
+autoreconf: error: /usr/bin/autoconf failed with exit status: 1
+
+
+  STDERR:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 1290, in <module>
+    main()
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/entrypoints.py", line 18, in main
+    ToolchainCL()
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 721, in __init__
+    getattr(self, command)(args)
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 104, in wrapper_func
+    build_dist_from_args(ctx, dist, args)
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/toolchain.py", line 163, in build_dist_from_args
+    build_recipes(build_order, python_modules, ctx,
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/build.py", line 530, in build_recipes
+    recipe.build_arch(arch)
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/recipes/libffi/__init__.py", line 28, in build_arch
+    shprint(sh.Command('./autogen.sh'), _env=env)
+  File "/content/.buildozer/android/platform/python-for-android/pythonforandroid/logger.py", line 174, in shprint
+    for line in output:
+                ^^^^^^
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 876, in __next__
+    self.wait()
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 793, in wait
+    self.handle_command_exit_code(exit_code)
+  File "/root/.local/lib/python3.12/site-packages/sh/__init__.py", line 820, in handle_command_exit_code
+    raise exc
+sh.ErrorReturnCode_1: 
+
+  RAN: /content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/libffi/armeabi-v7a__ndk_target_24/libffi/autogen.sh
+
+  STDOUT:
+autoreconf: export WARNINGS=
+autoreconf: Entering directory '.'
+autoreconf: configure.ac: not using Gettext
+autoreconf: running: aclocal -I m4
+autoreconf: configure.ac: tracing
+autoreconf: configure.ac: not using Libtool
+autoreconf: configure.ac: not using Intltool
+autoreconf: configure.ac: not using Gtkdoc
+autoreconf: running: /usr/bin/autoconf
+configure.ac:8: warning: The macro `AC_CANONICAL_SYSTEM' is obsolete.
+configure.ac:8: You should run autoupdate.
+./lib/autoconf/general.m4:2081: AC_CANONICAL_SYSTEM is expanded from...
+configure.ac:8: the top level
+configure.ac:74: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:74: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+acinclude.m4:3: AC_FUNC_MMAP_BLACKLIST is expanded from...
+configure.ac:74: the top level
+configure.ac:91: warning: The macro `AC_HEADER_STDC' is obsolete.
+configure.ac:91: You should run autoupdate.
+./lib/autoconf/headers.m4:704: AC_HEADER_STDC is expanded from...
+configure.ac:91: the top level
+configure.ac:118: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:118: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+m4/asmcfi.m4:1: GCC_AS_CFI_PSEUDO_OP is expanded from...
+configure.ac:118: the top level
+configure.ac:122: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:122: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+configure.ac:122: the top level
+configure.ac:138: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:138: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+configure.ac:138: the top level
+configure.ac:185: warning: The macro `AC_TRY_COMPILE' is obsolete.
+configure.ac:185: You should run autoupdate.
+./lib/autoconf/general.m4:2847: AC_TRY_COMPILE is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+configure.ac:185: the top level
+configure.ac:215: warning: _LT_CMD_GLOBAL_SYMBOLS is m4_require'd but not m4_defun'd
+aclocal.m4:778: LT_SYS_SYMBOL_USCORE is expanded from...
+configure.ac:215: the top level
+configure.ac:310: warning: The macro `AC_HELP_STRING' is obsolete.
+configure.ac:310: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+configure.ac:310: the top level
+configure.ac:418: warning: The macro `AC_HELP_STRING' is obsolete.
+configure.ac:418: You should run autoupdate.
+./lib/autoconf/general.m4:204: AC_HELP_STRING is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:418: warning: AC_PROG_LD is m4_require'd but not m4_defun'd
+acinclude.m4:251: LIBFFI_CHECK_LINKER_FEATURES is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:418: warning: The macro `AC_TRY_RUN' is obsolete.
+configure.ac:418: You should run autoupdate.
+./lib/autoconf/general.m4:2997: AC_TRY_RUN is expanded from...
+acinclude.m4:251: LIBFFI_CHECK_LINKER_FEATURES is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:418: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:418: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+acinclude.m4:353: LIBFFI_ENABLE_SYMVERS is expanded from...
+configure.ac:418: the top level
+configure.ac:41: error: possibly undefined macro: AC_PROG_LIBTOOL
+      If this token and others are legitimate, please use m4_pattern_allow.
+      See the Autoconf documentation.
+configure:8578: error: possibly undefined macro: AC_PROG_LD
+autoreconf: error: /usr/bin/autoconf failed with exit status: 1
+
+
+  STDERR:
+
+# Command failed: ('/usr/bin/python3', '-m', 'pythonforandroid.toolchain', 'create', '--dist_name=helloapp', '--bootstrap=sdl2', '--requirements=python3,kivy', '--arch=arm64-v8a', '--arch=armeabi-v7a', '--copy-libs', '--color=always', '--storage-dir=/content/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a', '--ndk-api=24', '--ignore-setup-py', '--debug')
+# Error code: 1
+# ENVIRONMENT:
+#     SHELL = '/bin/bash'
+#     COLAB_JUPYTER_TRANSPORT = 'ipc'
+#     CGROUP_MEMORY_EVENTS = '/sys/fs/cgroup/memory.events /var/colab/cgroup/jupyter-children/memory.events'
+#     VM_GCE_METADATA_HOST = '169.254.169.253'
+#     HOSTNAME = 'd0116e5708e2'
+#     MODEL_PROXY_HOST = 'https://mp.kaggle.net'
+#     LANGUAGE = 'en_US'
+#     TBE_RUNTIME_ADDR = '172.28.0.1:8011'
+#     GCE_METADATA_TIMEOUT = '3'
+#     COLAB_JUPYTER_IP = '172.28.0.12'
+#     KMP_LISTEN_PORT = '6000'
+#     TF_FORCE_GPU_ALLOW_GROWTH = 'true'
+#     ENV = '/root/.bashrc'
+#     PWD = '/content'
+#     TBE_EPHEM_CREDS_ADDR = '172.28.0.1:8009'
+#     TBE_CREDS_ADDR = '172.28.0.1:8008'
+#     JPY_SESSION_NAME = '1r2VfiGC9jvhkJZG4dr_lqgbwnGo9Cgkm'
+#     COLAB_JUPYTER_TOKEN = ''
+#     LAST_FORCED_REBUILD = '20260508'
+#     TCLLIBPATH = '/usr/share/tcltk/tcllib1.20'
+#     COLAB_KERNEL_MANAGER_PROXY_HOST = '172.28.0.12'
+#     UV_BUILD_CONSTRAINT = ''
+#     USE_AUTH_EPHEM = '1'
+#     COLAB_WARMUP_DEFAULTS = '1'
+#     HOME = '/root'
+#     LANG = 'en_US.UTF-8'
+#     COLAB_ENABLE_SSH = '1'
+#     CLOUDSDK_CONFIG = '/content/.config'
+#     UV_SYSTEM_PYTHON = 'true'
+#     COLAB_RELEASE_TAG = 'release-colab-external-images_20260811-060920_RC00'
+#     PYDEVD_USE_FRAME_EVAL = 'NO'
+#     KMP_TARGET_PORT = '9000'
+#     CLICOLOR = '1'
+#     KMP_EXTRA_ARGS = ('--logtostderr --listen_host=172.28.0.12 --target_host=172.28.0.12 '
+ '--tunnel_background_save_url=https://colab.research.google.com/tun/m/cc48301118ce562b961b3c22d803539adc1e0c19/m-s-kkb-usc1b1-22srj78zwbuqf '
+ '--tunnel_background_save_delay=10s '
+ '--tunnel_periodic_background_save_frequency=30m0s '
+ '--enable_output_coalescing=true --output_coalescing_required=true '
+ '--use_oneplatform_for_bg_save=true ')
+#     UV_INSTALL_DIR = '/usr/local/bin'
+#     COLAB_KERNEL_MANAGER_PROXY_PORT = '6000'
+#     CLOUDSDK_PYTHON = 'python3'
+#     ENABLE_DIRECTORYPREFETCHER = '1'
+#     NO_GCE_CHECK = 'False'
+#     JPY_PARENT_PID = '105'
+#     COLAB_NOTEBOOK_ID = '1r2VfiGC9jvhkJZG4dr_lqgbwnGo9Cgkm'
+#     PYTHONPATH = '/env/python'
+#     TERM = 'xterm-color'
+#     GIT_PAGER = 'cat'
+#     SHLVL = '0'
+#     PAGER = 'cat'
+#     COLAB_LANGUAGE_SERVER_PROXY = '/usr/colab/bin/language_service'
+#     UV_CONSTRAINT = ''
+#     PYTHONUTF8 = '1'
+#     MPLBACKEND = 'module://matplotlib_inline.backend_inline'
+#     COLAB_GPU = ''
+#     GCS_READ_CACHE_BLOCK_SIZE_MB = '16'
+#     LC_ALL = 'en_US.UTF-8'
+#     _PYVIZ_COMMS_INSTALLED = '1'
+#     COLAB_FILE_HANDLER_ADDR = 'localhost:3453'
+#     PATH = '/root/.buildozer/android/platform/apache-ant-1.9.4/bin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tools/node/bin:/tools/google-cloud-sdk/bin'
+#     COLAB_IMAGE_TYPE = 'cpu'
+#     PYTHONWARNINGS = 'ignore:::pip._internal.cli.base_command'
+#     DEBIAN_FRONTEND = 'noninteractive'
+#     COLAB_BACKEND_VERSION = 'next'
+#     OLDPWD = '/'
+#     _ = '/usr/local/bin/buildozer'
+#     PACKAGES_PATH = '/root/.buildozer/android/packages'
+#     ANDROIDSDK = '/root/.buildozer/android/platform/android-sdk'
+#     ANDROIDNDK = '/root/.buildozer/android/platform/android-ndk-r28c'
+#     ANDROIDAPI = '33'
+#     ANDROIDMINAPI = '24'
+# 
+# Buildozer failed to execute the last command
+# The error might be hidden in the log above this error
+# Please read the full log, and search for it before
+# raising an issue with buildozer itself.
+# In case of a bug report, please add a full log with log_level = 2
