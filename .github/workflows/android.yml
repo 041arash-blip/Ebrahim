@@ -1,8 +1,9 @@
+
 name: Build Android APK
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -16,13 +17,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.10'
 
       - name: Set up Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: "temurin"
-          java-version: "17"
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Install system dependencies
         run: |
@@ -30,7 +31,7 @@ jobs:
           sudo apt-get install -y \
             git zip unzip python3-pip \
             autoconf automake libtool pkg-config \
-            zlib1g-dev libncurses5 libncursesw5-dev libncursesw5-dev libtinfo5 \
+            zlib1g-dev libncurses-dev \
             cmake libffi-dev libssl-dev
 
       - name: Install Buildozer & Cython
@@ -38,7 +39,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install buildozer "cython<3"
 
-      - name: Pre-install Android SDK & Build-Tools (AIDL Fix)
+      - name: Pre-install Android SDK & Build-Tools
         run: |
           mkdir -p ~/.buildozer/android/platform/android-sdk/cmdline-tools
           cd /tmp
@@ -50,12 +51,12 @@ jobs:
           export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
           
           yes | sdkmanager --licenses >/dev/null || true
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          sdkmanager "platform-tools" "platforms;android-33" "build-tools;34.0.0"
 
       - name: Build APK with Buildozer
         run: |
           export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/34.0.0:$PATH
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
           buildozer android debug
 
       - name: Upload APK
