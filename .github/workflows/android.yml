@@ -1,4 +1,3 @@
-
 name: Build Android APK
 
 on:
@@ -41,13 +40,19 @@ jobs:
 
       - name: Pre-install Android SDK & Build-Tools
         run: |
-          mkdir -p ~/.buildozer/android/platform/android-sdk/cmdline-tools
+          export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
+          mkdir -p $ANDROID_HOME/cmdline-tools
           cd /tmp
           wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
           unzip -q commandlinetools-linux-11076708_latest.zip
-          mv cmdline-tools ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest
+          rm -rf $ANDROID_HOME/cmdline-tools/latest
+          mv cmdline-tools $ANDROID_HOME/cmdline-tools/latest
           
-          export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
+          # ایجاد لینک‌های مسیر قدیمی ابزارها برای سازگاری کامل بیلدوزر
+          mkdir -p $ANDROID_HOME/tools/bin
+          ln -sf $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager $ANDROID_HOME/tools/bin/sdkmanager
+          ln -sf $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager $ANDROID_HOME/tools/bin/avdmanager
+          
           export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
           
           yes | sdkmanager --licenses >/dev/null || true
@@ -56,7 +61,7 @@ jobs:
       - name: Build APK with Buildozer
         run: |
           export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
           buildozer android debug
 
       - name: Upload APK
