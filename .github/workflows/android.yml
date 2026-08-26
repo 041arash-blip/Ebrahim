@@ -1,3 +1,4 @@
+
 name: Build Android APK
 on:
   push:
@@ -14,23 +15,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
-
-      - name: Install Buildozer
-        run: |
-          pip install --upgrade buildozer
-          pip install --upgrade cython
+      # استفاده از اکشن استاندارد برای نصب خودکار پیش‌نیازهای Buildozer
+      - name: Setup Buildozer
+        uses: kivy/setup-buildozer@main
 
       - name: Build with Buildozer
         run: |
           buildozer android debug
-        env:
-          # مشخص کردن مسیر SDK برای حل مشکل AIDL
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          ANDROID_SDK_HOME: /usr/local/lib/android/sdk
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
