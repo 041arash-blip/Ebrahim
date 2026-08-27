@@ -47,7 +47,6 @@ jobs:
           sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
           ln -sfn "$ANDROID_HOME/build-tools/35.0.0" "$ANDROID_HOME/build-tools/37.0.0"
           test -x "$ANDROID_HOME/build-tools/35.0.0/aidl"
-          ls -l "$ANDROID_HOME/build-tools/35.0.0/aidl"
 
       - name: Build APK with Buildozer
         env:
