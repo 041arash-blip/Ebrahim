@@ -2,7 +2,8 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -10,76 +11,50 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.10
+      - name: Checkout source
+        uses: actions/checkout@ - name: Set - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.11"
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses-dev libffi-dev libssl-dev libtinfo-dev cmake
+          sudo apt-get install -y \
+            git \
+            zip \
+            unzip \
+            openjdk-17-jdk \
+            python3-pip \
+            autoconf \
+            automake \
+            libtool \
+            pkg-config \
+            zlib1g-dev \
+            libncurses5-dev \
+            libffi-dev \
+            libssl-dev
 
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Install Android SDK Command-line Tools
+      - name: Install Buildozer and Cython
         run: |
-          mkdir -p $HOME/android-sdk/cmdline-tools
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O /tmp/cmdline-tools.zip
-          unzip -q /tmp/cmdline-tools.zip -d $HOME/android-sdk/cmdline-tools
-          mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
-          echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
-          echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
-          echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
-          echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install buildozer "cython<3"
 
-      - name: Install Android SDK Platform & Build-Tools
+      - name: Set Android environment
         run: |
-          export ANDROID_HOME=$HOME/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-          yes | sdkmanager --licenses || true
-          sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
-          echo "$HOME/android-sdk/build-tools/33.0.2" >> $GITHUB_PATH
+          echo "ANDROID_HOME=$HOME/android-sdk" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> "$GITHUB_ENV"
+          echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
+          echo "$HOME/android-sdk/platform-tools" >> "$GITHUB_PATH"
+          echo "$HOME/android-sdk/build-tools/35.0.0" >> "$GITHUB_PATH"
 
-      - name: Install Python dependencies & Buildozer
+      - name: Install Android SDK
         run: |
-          pip install --upgrade pip setuptools wheel
-          pip install Cython==0.29.36
-          pip install git+https://github.com/kivy/buildozer.git
-          pip install git+https://github.com/kivy/python-for-android.git
+          mkdir -p "$HOME/android-sdk/cmdline-tools"
+          cd /tmp
 
-      - name: Link SDK for Buildozer
-        run: |
-          mkdir -p ~/.buildozer/android/platform
-          ln -sbin" >> $GITHUB_PATH
-          echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip \
+            -O cmdline-tools.zip
 
-      - name: Install Android SDK Platform & Build-Tools
-        run: |
-          export ANDROID_HOME=$HOME/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-          yes | sdkmanager --licenses || true
-          sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
-          echo "$HOME/android-sdk/build-tools/33.0.2" >> $GITHUB_PATH
-
-      - name: Install Python dependencies & Buildozer
-        run: |
-          pip install --upgrade pip setuptools wheel
-          pip install Cython==0.29.36
-          pip install git+https://github.com/kivy/buildozer.git
-          pip install git+https://github.com/kivy/python-for-android.git
-
-    - name: Link SDK for Buildozer
-        run: |
-          mkdir -p "$HOME/.buildozer/android/platform"
-          rm -rf "$HOME/.buildozer/android/platform/android-sdk"
-          ln -s "$HOME/android-sdk" "$HOME/.buildozer/android/platform/android-sdk"
-          test -L "$HOME/.buildozer/android/platform/android-sdk"
-          echo "SDK link created successfully" 
+          unzip -q cmdline-tools.zip
+          mv cmdline-tools
