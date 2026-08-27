@@ -29,6 +29,16 @@ jobs:
           sudo apt update
           sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses-dev libffi-dev libssl-dev ccache lld
 
+      - name: Setup Android Build-Tools & AIDL
+        run: |
+          echo "Installing Android build-tools..."
+          yes | sdkmanager --licenses || true
+          sdkmanager "platforms;android-33" "build-tools;33.0.2" "platform-tools"
+          
+          # ساخت پوشه بیلداوزر و لینک کردن مستقیم SDK برای جلوگیری از خطای aidl not found
+          mkdir -p ~/.buildozer/android/platform
+          ln -sfn $ANDROID_HOME ~/.buildozer/android/platform/android-sdk
+
       - name: Install Python build tools
         run: |
           pip install --upgrade pip setuptools wheel
@@ -46,7 +56,6 @@ jobs:
         if: steps.build_step.outcome == 'failure'
         run: |
           echo "==================== [ START OF REAL ERROR ] ===================="
-          # فیلتر کردن و نمایش خطاهای واقعی کامپایل و پایتون
           grep -C 5 -i -E "error:|fatal error|exception|traceback|cannot find|undefined reference|failed with exit code" raw_build.log | tail -n 60 || true
           echo "==================== [ LAST 40 LINES OF BUILD ] ===================="
           tail -n 40 raw_build.log || true
