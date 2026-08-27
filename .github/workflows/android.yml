@@ -2,9 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -18,68 +16,56 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: "17"
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Install system dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            git zip unzip autoconf automake libtool pkg-config \
-            zlib1g-dev libncurses5 libstdc++6 cmake \
-            build-essential ccache libffi-dev libssl-dev \
-            libltdl-dev
+          sudo apt update
+          sudo apt install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses-dev libffi-dev libssl-dev ccache lld
 
-      - name: Install Python dependencies
+      - name: Install Python build tools
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip setuptools wheel
           pip install Cython==0.29.36 buildozer
 
       - name: Build APK with Buildozer
+        id: build_step
+        continue-on-error: true
         run: |
           set -o pipefail
-          yes | buildozer android debug 2>&1 | tee build.log
+          buildozer -v android debug 2>&1 | tee raw_build.log
+          exit ${PIPESTATUS[0]}
 
-      - name: Print Real Errors From Build Log
-        if: always()
+      - name: Show Exact Root Error
+        if: steps.build_step.outcome == 'failure'
         run: |
-          echo "=============================================================="
-          echo "==================== MATCHING ERROR LINES ===================="
-          echo "=============================================================="
-
-          if [ -f build.log ]; then
-            grep -inE \
-              'error:|fatal:|exception|traceback|failed|failure|command failed|not found|cannot find|undefined reference|cython' \
-              build.log | tail -n 150 || true
-
-            echo "=============================================================="
-            echo "==================== LAST 250 LOG LINES ====================="
-            echo "=============================================================="
-
-            tail -n 250 build.log || true
-          else
-            echo "build.log file not found."
-          fi
-
-          echo "=============================================================="
-
-      - name: Upload build log
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: SmartRisk-build-log
-          path: build.log
-          if-no-files-found: warn
+          echo "==================== [ START OF REAL ERROR ] ===================="
+          # فیلتر کردن و نمایش خطاهای واقعی کامپایل و پایتون
+          grep -C 5 -i -E "error:|fatal error|exception|traceback|cannot find|undefined reference|failed with exit code" raw_build.log | tail -n 60 || true
+          echo "==================== [ LAST 40 LINES OF BUILD ] ===================="
+          tail -n 40 raw_build.log || true
+          echo "==================== [ END OF LOG ] ===================="
 
       - name: Upload APK
+        if: steps.build_step.outcome == 'success'
         uses: actions/upload-artifact@v4
-        if: success()
         with:
           name: SmartRisk-APK
           path: bin/*.apk
-          if-no-files-found: warn
+
+      - name: Upload full build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-build-log
+          path: raw_build.log
+
+      - name: Check Final Status
+        if: steps.build_step.outcome == 'failure'
+        run: exit 1
