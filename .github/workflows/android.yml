@@ -52,29 +52,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install --upgrade "cython<3.0" buildozer setuptools wheel
 
-      - name: Setup Android SDK Symlinks and Accept Licenses
+      - name: Prepare Android SDK Structure
         run: |
-          # ساخت ساختار کامل پوشه SDK برای بیلدوزر
           SDK_DIR="/home/runner/.buildozer/android/platform/android-sdk"
           mkdir -p "$SDK_DIR/tools/bin"
           mkdir -p "$SDK_DIR/cmdline-tools/latest/bin"
-
-          # کپی/لینک مستقیم ابزارها
           ln -sf $ANDROID_HOME/cmdline-tools/latest/bin/* "$SDK_DIR/tools/bin/"
           ln -sf $ANDROID_HOME/cmdline-tools/latest/bin/* "$SDK_DIR/cmdline-tools/latest/bin/"
           ln -sf $ANDROID_HOME/build-tools "$SDK_DIR/build-tools"
           ln -sf $ANDROID_HOME/platforms "$SDK_DIR/platforms"
           ln -sf $ANDROID_HOME/platform-tools "$SDK_DIR/platform-tools"
-
-          # تایید قوانین لایسنس
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Build APK with Buildozer
         env:
           ANDROIDSDK: /home/runner/.buildozer/android/platform/android-sdk
-          ANDROIDNDK: /home/runner/.buildozer/android/platform/android-ndk-r25b
         run: |
-          # اجبار به معماری پایدار arm64-v8a
           buildozer -v android debug
 
       - name: List and Prepare APKs
