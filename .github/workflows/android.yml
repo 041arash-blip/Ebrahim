@@ -25,6 +25,9 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -42,7 +45,7 @@ jobs:
             libffi-dev \
             libssl-dev
 
-      - name: Accept Android SDK Licenses and Install Build Tools
+      - name: Accept SDK Licenses and Install Build Tools
         run: |
           yes | sdkmanager --licenses || true
           sdkmanager "build-tools;33.0.2" "platforms;android-33" "platform-tools"
