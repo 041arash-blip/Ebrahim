@@ -11,6 +11,10 @@ fullscreen = 0
 android.archs = arm64-v8a
 android.api = 33
 android.minapi = 21
-android.sdk = 33
-android.ndk = 25b
-p4a.branch = develop
+android.ndk_api = 21
+android.accept_sdk_license = True
+p4a.branch = master
+
+[buildozer]
+log_level = 2
+warn_on_root = 1
