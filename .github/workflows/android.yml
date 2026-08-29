@@ -29,9 +29,9 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install "cython<3"
-          python3 -m pip install --upgrade buildozer
+          python3 -m pip install buildozer
 
-      - name: Prepare Android SDK & NDK
+      - name: Prepare Android SDK
         shell: bash
         run: |
           export ANDROID_HOME="$HOME/.buildozer/android/platform/android-sdk"
@@ -39,41 +39,47 @@ jobs:
           cd /tmp
           wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O commandlinetools.zip
           unzip -q commandlinetools.zip -d "$ANDROID_HOME"
-          mv "$ANDROID_HOME/cmdline-tools" "$ANDROID_HOME/tools"
           mkdir -p "$ANDROID_HOME/cmdline-tools"
-          mv "$ANDROID_HOME/tools" "$ANDROID_HOME/cmdline-tools/latest"
-          ln -s "$ANDROID_HOME/cmdline-tools/latest" "$ANDROID_HOME/tools"
+          mv "$ANDROID_HOME/cmdline-tools" "$ANDROID_HOME/tools_temp" 2>/dev/null || true
+          mkdir -p "$ANDROID_HOME/cmdline-tools/latest"
+          if [ -d "$ANDROID_HOME/tools_temp" ]; then
+            mv "$ANDROID_HOME/tools_temp/"* "$ANDROID_HOME/cmdline-tools/latest/" 2>/dev/null || true
+            rm -rf "$ANDROID_HOME/tools_temp"
+          fi
+          ln -s "$ANDROID_HOME/cmdline-tools/latest" "$ANDROID_HOME/tools" 2>/dev/null || true
           export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
           yes | sdkmanager --licenses >/dev/null || true
           sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
 
       - name: Build APK with Buildozer
-        id: build_step
+        id: run_build
         continue-on-error: true
         env:
           ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
           ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
         run: |
-          buildozer -v android debug 2>&1 | tee full_build.log
+          buildozer -v android debug 2>&1 | tee build_output.log
 
-      - name: Extract error log if failed
-        if: steps.build_step.outcome != 'success'
+      - name: Save Error Log on Failure
+        if: steps.run_build.outcome != 'success'
         run: |
-          echo "=== LAST 100 LINES OF BUILD LOG ===" > error-summary.txt
-          tail -n 100 full_build.log >> error-summary.txt
-          exit 1
+          echo "=== 50 LINES OF ERROR LOG ===" > error-summary.txt
+          tail -n 50 build_output.log >> error-summary.txt
 
-      - name: Upload Error Summary
-        if: failure()
+      - name: Upload Error Log
+        if: steps.run_build.outcome != 'success'
         uses: actions/upload-artifact@v4
         with:
-          name: build-error-summary
+          name: error-summary
           path: error-summary.txt
 
-      - name: Upload APK
-        if: steps.build_step.outcome == 'success'
+      - name: Upload APK on Success
+        if: steps.run_build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: SmartRisk-apk
           path: bin/*.apk
-          if-no-files-found: error
+
+      - name: Fail workflow if build failed
+        if: steps.run_build.outcome != 'success'
+        run: exit 1
