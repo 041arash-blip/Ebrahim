@@ -22,13 +22,53 @@ jobs:
       - name: Set up Java JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install-tools
-# Search for Aidl
-# Aidl not found, please install it.
-Error: Process completed with exit code 1.
+          sudo apt-get install -y \
+            git \
+            zip \
+            unzip \
+            autoconf \
+            libtool \
+            pkg-config \
+            zlib1g-dev \
+            libncurses5-dev \
+            libncursesw5-dev \
+            cmake \
+            libffi-dev \
+            libssl-dev
+
+      - name: Accept Android SDK Licenses and Install Build Tools
+        run: |
+          yes | sdkmanager --licenses || true
+          sdkmanager "build-tools;33.0.2" "platforms;android-33" "platform-tools"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install buildozer cython==0.29.33
+
+      - name: Build APK with Buildozer
+        run: |
+          buildozer -v android debug
+
+      - name: List and Prepare APKs
+        if: always()
+        run: |
+          echo "=== Searching for APK files ==="
+          mkdir -p output_apk
+          find . -type f -iname "*.apk" -exec cp -v {} output_apk/ \;
+          echo "=== Files ready to upload ==="
+          ls -lah output_apk
+
+      - name: Upload APK
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SmartRisk-apk
+          path: output_apk/*.apk
+          if-no-files-found: warn
