@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.9"
 
       - name: Set up Java JDK
         uses: actions/setup-java@v4
@@ -46,10 +46,10 @@ jobs:
             lld \
             ccache
 
-      - name: Install Python dependencies
+      - name: Install Python build tools
         run: |
           python -m pip install --upgrade pip
-          pip install --upgrade "cython<3.0" buildozer setuptools wheel virtualenv
+          pip install --upgrade "cython<3.0" "buildozer==1.5.0" "virtualenv" setuptools wheel
 
       - name: Install Android Platform 33 & Accept Licenses
         run: |
@@ -73,18 +73,10 @@ jobs:
         run: |
           buildozer android debug
 
-      - name: List and Prepare APKs
-        if: always()
-        run: |
-          mkdir -p output_apk
-          find bin/ -type f -name "*.apk" -exec cp -v {} output_apk/ \; || true
-          find . -type f -name "*.apk" -exec cp -v {} output_apk/ \; || true
-          ls -lah output_apk
-
       - name: Upload APK
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: SmartRisk-apk
-          path: output_apk/*.apk
+          path: bin/*.apk
           if-no-files-found: warn
