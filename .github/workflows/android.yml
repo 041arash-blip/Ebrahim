@@ -2,7 +2,9 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
@@ -10,51 +12,61 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
-      - name: Install system dependencies
+      - name: Free Disk Space & Optimize Memory
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo apt-get clean
+          echo "Disk space cleaned for Buildozer"
+
+      - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
+          sudo apt-get install -y \
             build-essential \
             git \
             ffmpeg \
             libsdl2-dev \
             libsdl2-image-dev \
-            libsdl2-mixer-dev \
+            libsdl2-mixin-dev \
             libsdl2-ttf-dev \
             libportmidi-dev \
             libswscale-dev \
             libavformat-dev \
             libavcodec-dev \
             zlib1g-dev \
-            libgstreamer1.0-0 \
+            libgstreamer1.0-dev \
             gstreamer1.0-plugins-base \
             gstreamer1.0-plugins-good \
-            libffi-dev \
-            libssl-dev \
+            openjdk-17-jdk \
+            unzip \
+            zip \
+            ccache \
             autoconf \
-            automake \
             libtool \
             pkg-config \
-            cmake \
-            openjdk-17-jdk
+            libssl-dev \
+            libffi-dev
 
-      - name: Install Python build tools
+      - name: Install Python Dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
           pip install "Cython==0.29.33"
           pip install buildozer
 
       - name: Build APK with Buildozer
         run: |
-          buildozer -v android debug
+          yes | buildozer -v android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
