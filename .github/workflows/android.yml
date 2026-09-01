@@ -20,7 +20,7 @@ jobs:
 
       - name: Free Disk Space
         run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc "/usr/local/share/boost"
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/share/boost
           sudo apt-get clean
 
       - name: Install System Dependencies
@@ -32,7 +32,7 @@ jobs:
             libavformat-dev libavcodec-dev zlib1g-dev openjdk-17-jdk \
             unzip zip ccache autoconf libtool pkg-config libssl-dev libffi-dev
 
-      - name: Force Python 3.10 as system python3 (AFTER apt)
+      - name: Force Python 3.10 as system python3
         run: |
           PY310_BIN=$(python -c "import sys; print(sys.executable)")
           sudo rm -f /usr/bin/python3 /usr/bin/python
@@ -55,11 +55,11 @@ jobs:
       - name: Print last 150 lines of build log (on failure)
         if: failure()
         run: |
-          if [ -f build.log ]; then tail -n 150 build.log; else echo "No build.log — buildozer step never ran or failed before logging."; fi
-
-      - name: Upload APK Artifact
-        if: always()
-        uses: failed before logging."; fi
+          if [ -f build.log ]; then
+            tail -n 150 build.log
+          else
+            echo "No build.log found - buildozer step did not run."
+          fi
 
       - name: Upload APK Artifact
         if: always()
