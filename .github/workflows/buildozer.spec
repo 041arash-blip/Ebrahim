@@ -1,4 +1,10 @@
 [app]
+# استفاده از نسخه پایدار API
+android.api = 31
+android.minapi = 21
+# تنظیم NDK برای جلوگیری از دانلود خودکار معیوب
+android.ndk = 25b
+android.ndk_api = 24[app]
 # (str) Title of your application
 title = SmartRisk
 
