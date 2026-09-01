@@ -3,8 +3,6 @@ name: Build Android APK
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
@@ -20,52 +18,46 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Force Python 3.10 as system python3
+        run: |
+          PY310_BIN=$(python -c "import sys; print(sys.executable)")
+          PY310_DIR=$(dirname "$PY310_BIN")
+          echo "$PY310_DIR" >> $GITHUB_PATH
+          sudo rm -f /usr/bin/python3 /usr/bin/python
+          sudo ln -s "$PY310_BIN" /usr/bin/python3
+          sudo ln -s "$PY310_BIN" /usr/bin/python
+          python3 --version
+
       - name: Free Disk Space
         run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc "/usr/local/share/boost"
           sudo apt-get clean
 
       - name: Install System Dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
-            build-essential \
-            git \
-            ffmpeg \
-            libsdl2-dev \
-            libsdl2-image-dev \
-            libsdl2-mixer-dev \
-            libsdl2-ttf-dev \
-            libportmidi-dev \
-            libswscale-dev \
-            libavformat-dev \
-            libavcodec-dev \
-            zlib1g-dev \
-            openjdk-17-jdk \
-            unzip \
-            zip \
-            ccache \
-            autoconf \
-            libtool \
-            pkg-config \
-            libssl-dev \
-            libffi-dev
+            build-essential git ffmpeg libsdl2-dev libsdl2-image-dev \
+            libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev \
+            libavformat-dev libavcodec-dev zlib1g-dev openjdk-17-jdk \
+            unzip zip ccache autoconf libtool pkg-config libssl-dev libffi-dev
 
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          pip install "Cython==0.29.33"
-          pip install "buildozer==1.5.0"
+          python -m pip install "Cython==0.29.33" "buildozer==1.5.0" "virtualenv"
 
       - name: Build APK with Buildozer
         env:
           APP_ANDROID_ARCHS: "arm64-v8a"
         run: |
-          buildozer android clean || true
-          yes | buildozer -v android debug
+          set -o pipefail
+          buildozer -v android debug 2>&1 | tee build.log
+
+      - name: Print last 150 lines of build log (on failure)
+        if: failure()
+        run: |
+          tail -n 150 build.log
 
       - name: Upload APK Artifact
         if: always()
