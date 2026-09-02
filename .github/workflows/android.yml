@@ -1,70 +1,25 @@
-name: Build Android APK
-
+نname: Build Android APK
 on:
   push:
-    branches: [ "main", "master" ]
-  workflow_dispatch:
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
-
+    runs-on: ubuntu-22.04  # استفاده از نسخه پایدارتر
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
+        # نصب libtinfo5 از مخازن جایگزین اگر لازم بود
+        sudo apt-get install -y libtinfo5 || sudo apt-get install -y libtinfo6
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      - name: Free Disk Space
-        run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/share/boost
-          sudo apt-get clean
-
-      - name: Install System Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            build-essential git ffmpeg libsdl2-dev libsdl2-image-dev \
-            libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev \
-            libavformat-dev libavcodec-dev zlib1g-dev openjdk-17-jdk \
-            unzip zip ccache autoconf libtool pkg-config libssl-dev libffi-dev
-
-      - name: Force Python 3.10 as system python3
-        run: |
-          PY310_BIN=$(python -c "import sys; print(sys.executable)")
-          sudo rm -f /usr/bin/python3 /usr/bin/python
-          sudo ln -s "$PY310_BIN" /usr/bin/python3
-          sudo ln -s "$PY310_BIN" /usr/bin/python
-          python3 --version
-
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          python -m pip install "Cython==0.29.33" "buildozer==1.5.0" virtualenv
-
-      - name: Build APK with Buildozer
-        env:
-          APP_ANDROID_ARCHS: "arm64-v8a"
-        run: |
-          set -o pipefail
-          buildozer -v android debug 2>&1 | tee build.log
-
-      - name: Print last 150 lines of build log (on failure)
-        if: failure()
-        run: |
-          if [ -f build.log ]; then
-            tail -n 150 build.log
-          else
-            echo "No build.log found - buildozer step did not run."
-          fi
-
-      - name: Upload APK Artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: SmartRisk-APK
-          path: bin/*.apk
-          if-no-files-found: warn
+    - name: Build with Buildozer
+      uses: ArtemSBulgakov/buildozer-action@v1
+      with:
+        command: buildozer android debug
+      env:
+        # تنظیم متغیر برای رفع خطای Aidl
+        ANDROID_HOME: /usr/local/android-sdk
