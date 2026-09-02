@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -13,29 +13,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.10
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: Install system dependencies
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install System Dependencies
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config \
-            zlib1g-dev libncurses-dev libffi-dev libssl-dev libltdl-dev libsqlite3-dev \
-            ccache cmake
+          sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 
-      - name: Install Python build tools
+      - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade pip setuptools wheel
+          pip install --upgrade pip
           pip install "cython<3.0"
           pip install buildozer
 
       - name: Build APK with Buildozer
         run: |
-          buildozer -v android debug
+          yes | buildozer -v android debug
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: SmartRisk-APK
