@@ -24,18 +24,18 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Set up Android SDK & Build Tools
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Install Android Build-Tools with AIDL
         run: |
-          yes | sdkmanager --licenses
+          yes | sdkmanager --licenses || true
           sdkmanager "platforms;android-31" "build-tools;31.0.0" "platform-tools"
 
       - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
+          sudo apt-get install -y --no-install-recommends \
             build-essential \
             git \
             ffmpeg \
@@ -48,9 +48,6 @@ jobs:
             libavformat-dev \
             libavcodec-dev \
             zlib1g-dev \
-            libgstreamer1.0-dev \
-            gstreamer1.0-plugins-base \
-            gstreamer1.0-plugins-good \
             libncurses5-dev \
             libncursesw5-dev \
             libtinfo5 \
@@ -59,7 +56,8 @@ jobs:
             libssl-dev \
             zip \
             unzip
-          pip install --upgrade pip Cython==0.29.36 buildozer
+          pip install --upgrade pip
+          pip install Cython==0.29.36 buildozer
 
       - name: Build APK with Buildozer
         run: |
