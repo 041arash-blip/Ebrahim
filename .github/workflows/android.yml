@@ -31,24 +31,16 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          buildozer -v android debug 2>&1 | tee build_output.log
+          buildozer -v android debug
 
-      - name: Show Error Summary if Failed
-        if: failure()
+      - name: Collect APK Files
         run: |
-          echo "=== LAST 100 LINES OF BUILD LOG ==="
-          tail -n 100 build_output.log
+          mkdir -p output_apk
+          find . -name "*.apk" -exec cp {} output_apk/ \;
+          ls -la output_apk/
 
-      - name: Upload APK
-        if: success()
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: SmartRisk-App
-          path: bin/*.apk
-
-      - name: Upload Full Log on Failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-failure-log
-          path: build_output.log
+          path: output_apk/*.apk
