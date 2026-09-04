@@ -1,21 +1,47 @@
-[app]
-title = SmartRisk
-package.name = smartrisk
-package.domain = org.smartrisk
+name: Build APK with Buildozer
 
-source.dir = .
-source.include_exts = py,png,jpg,kv,atlas,txt,json
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-# کتابخانه‌های لازم (پایتون، کیوی و کدهای کمکی)
-requirements = python3,kivy==2.2.1,requests,urllib3,charset-normalizer,idna,certifi
+jobs:
+  build:
+    name: Build Android APK
+    runs-on: ubuntu-latest
 
-# تنظیمات معماری و نسخه‌های اندروید (بهینه‌سازی شده برای جلوگیری از خطا)
-android.api = 31
-android.minapi = 21
-android.ndk = 25b
-android.ndk_api = 21
-android.archs = arm64-v8a
-android.accept_sdk_license = True
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-# توضیحات مربوط به فایل‌های دیگر در buildozer.spec که تغییری نکرده‌اند
-# ... (بقیه تنظیمات شما که تغییری نکرده است)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git zip unzip wget curl openjdk-17-jdk \
+            autoconf automake libtool pkg-config cmake \
+            gettext libffi-dev libssl-dev zlib1g-dev \
+            libsqlite3-dev libbz2-dev liblzma-dev \
+            libreadline-dev libgdbm-dev libncurses-dev \
+            libgl-dev libgles2-mesa-dev ccache
+
+      - name: Install Buildozer
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "buildozer>=1.5.0" "cython<3.0"
+
+      - name: Build APK
+        run: |
+          buildozer -v android debug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SmartRisk-App
+          path: bin/*.apk
