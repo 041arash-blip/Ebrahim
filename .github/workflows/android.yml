@@ -1,45 +1,21 @@
-name: Build APK with Buildozer
+[app]
+title = SmartRisk
+package.name = smartrisk
+package.domain = org.smartrisk
 
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+source.dir = .
+source.include_exts = py,png,jpg,kv,atlas,txt,json
 
-jobs:
-  build:
-    runs-on: ubuntu-22.04
+# کتابخانه‌های لازم (پایتون، کیوی و کدهای کمکی)
+requirements = python3,kivy==2.2.1,requests,urllib3,charset-normalizer,idna,certifi
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+# تنظیمات معماری و نسخه‌های اندروید (بهینه‌سازی شده برای جلوگیری از خطا)
+android.api = 31
+android.minapi = 21
+android.ndk = 25b
+android.ndk_api = 21
+android.archs = arm64-v8a
+android.accept_sdk_license = True
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
-
-    - name: Install Buildozer & Cython
-      run: |
-        python -m pip install --upgrade pip
-        pip install "buildozer>=1.5.0" "cython<3.0"
-
-    - name: Build with Buildozer
-      run: |
-        buildozer android debug
-
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: SmartRisk-App
-        path: bin/*.apk
+# توضیحات مربوط به فایل‌های دیگر در buildozer.spec که تغییری نکرده‌اند
+# ... (بقیه تنظیمات شما که تغییری نکرده است
