@@ -27,7 +27,7 @@ jobs:
       - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y \
+          sudo apt-get install -y --no-install-recommends \
             build-essential \
             git \
             ffmpeg \
@@ -40,9 +40,6 @@ jobs:
             libavformat-dev \
             libavcodec-dev \
             zlib1g-dev \
-            libgstreamer1.0-dev \
-            gstreamer1.0-plugins-base \
-            gstreamer1.0-plugins-good \
             libffi-dev \
             libssl-dev \
             autoconf \
@@ -53,7 +50,7 @@ jobs:
             zip \
             unzip
 
-      - name: Install Buildozer & Dependencies
+      - name: Install Buildozer & Cython
         run: |
           pip install --upgrade pip setuptools wheel
           pip install Cython==0.29.36
