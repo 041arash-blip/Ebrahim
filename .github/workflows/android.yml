@@ -1,28 +1,37 @@
-yaml
-name: Android Build
-on: [push]
+# -*- coding: utf-8 -*-
 
-jobs:
-  build:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential ccache git libncurses5-dev libstdc++6 libffi-dev libssl-dev libtinfo5 autoconf libtool pkg-config zlib1g-dev
-          
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
-        with:
-          buildozer_version: stable
-        env:
-          # این بخش به حل مشکل SDK کمک می‌کند
-          ANDROID_HOME: /usr/local/lib/android/sdk
-          
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: package
-          path: bin/*.apk
+import kivy
+kivy.require('2.2.0') # Replace with your actual Kivy version if different
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen, ScreenManager
+
+# Define your screens here
+class MainScreen(Screen):
+    pass
+
+class SettingsScreen(Screen):
+    pass
+
+# Create the ScreenManager
+class MyScreenManager(ScreenManager):
+    pass
+
+# Main App Class
+class TestApp(App):
+    def build(self):
+        # Load kv file if you have one, otherwise define layout in Python
+        # Builder.load_file('test.kv')
+        
+        # Example layout if no kv file is used:
+        sm = MyScreenManager()
+        sm.add_widget(MainScreen(name='main'))
+        sm.add_widget(SettingsScreen(name='settings'))
+        return sm
+
+# Entry point of the application
+if name == '__main__':
+    TestApp().run()
