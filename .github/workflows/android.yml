@@ -1,33 +1,78 @@
-name: Build Android APK
+[app]
 
-on: [push]
+# (str) Title of your application
+title = SmartRisk
 
-jobs:
-  build:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v3
+# (str) Package name
+package.name = smartrisk
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+# (str) Package domain (needed for android/ios packaging)
+package.domain = org.smartrisk
 
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config libncurses-dev cmake libffi-dev libssl-dev
+# (str) Source code where the main.py live
+source.dir = .
 
-      - name: Install Buildozer and Cython
-        run: |
-          pip install --upgrade pip
-          pip install buildozer cython==0.29.33
+# (list) Source files to include (let empty to include all the files)
+source.include_exts = py,png,jpg,kv,atlas,json
 
-      - name: Build APK with Buildozer
-        run: buildozer android debug
+# (list) Application requirements
+# comma separated e.g. requirements = sqlite3,kivy
+requirements = python3,kivy,urllib3,chardet,certifi,filetype,six,idna,requests
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: SmartRisk-APK
-          path: bin/*.apk
+# (str) Application versioning (method 1)
+version = 1.0
+
+# (str) Presplash of the application
+# presplash.filename = %(source.dir)s/data/presplash.png
+
+# (str) Icon of the application
+# icon.filename = %(source.dir)s/data/icon.png
+
+# (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
+orientation = portrait
+
+# (list) List of service to declare
+#services = NAME:ENTRYPOINT_TO_PY,NAME2:ENTRYPOINT_TO_PY
+
+#
+# Android specific
+#
+
+# (int) Android API to use
+android.api = 33
+
+# (int) Minimum API required
+android.minapi = 21
+
+# (int) Android SDK to use
+android.sdk = 24
+
+# (str) Android NDK to use
+android.ndk = 25b
+
+# (bool) Use --private data storage (True) or --dir public storage (False)
+android.private_storage = True
+
+# (str) Android NDK directory (if empty, it will be automatically downloaded.)
+#android.ndk_path =
+
+# (bool) If True, then automatically accept SDK license
+android.accept_sdk_license = True
+
+# (list) Android architectures to build for, separated by commas
+android.archs = arm64-v8a, armeabi-v7a
+
+#
+# Log levels
+#
+
+# (int) Log level (0 = error only, 1 = info, 2 = debug)
+log_level = 1
+
+[buildozer]
+
+# (int) Log level (0 = error only, 1 = info, 2 = debug)
+log_level = 1
+
+# (str) Path to build artifacts (bin dir)
+#bin_dir = ./bin
